@@ -1,0 +1,12 @@
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <meta http-equiv="REFRESH" content="0;url='{% url 'notatki' %}'">
+    {% else %}
+        <meta http-equiv="REFRESH" content="0;url='{% url 'login' %}'">
+    {% endif %}
+{% endblock %}

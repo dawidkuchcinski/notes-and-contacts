@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="row h-100">
+        <div class="col-lg-9">
+            <div class="card-columns">
+                {% if note %}
+                    {% for nte in note %}
+                        <div class="card m-5" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ nte.title }}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ nte.modify_time }}</h6>
+                                <p class="card-text">{{ nte.note_content }}</p>
+                                <p class="card-text"><small class="text-muted">{{ nte.tag }}</small><small class=""> {{ nte.status }}</small></p>
+                                <div class="text-right">
+                                    <button class="btn btn-outline-info" alt="Poprzedni status"><i class="fas fa-angle-left"></i></button>
+                                    <button class="btn btn-outline-info" alt="Następny status"><i class="fas fa-angle-right"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                {{ nte.contacts.first_name }} {{ nte.contacts.last_name }}<br>
+                                {{ nte.contacts.phone_number }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Brak notatek</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-lg-3 bg-light">
+            Tutaj będzie formularz dodawania notatek
+            Kiedyś
+        </div>
+    </div>
+{% endblock %}
