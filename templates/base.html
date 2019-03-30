@@ -15,14 +15,6 @@
   <nav class="navbar sticky-top navbar-light bg-nav pb-0 pl-5">
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <a class="nav-link pb-3 mt-2" href="#"><i class="fas fa-address-book"></i> Kontakty</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active rounded-top mt-2 pb-3" href="#"><i class="fas fa-quote-left"></i> Notatki</a>
-      </li>
-    </ul>
-  </nav>
-  <main class="container-fluid">
     {% if user.is_authenticated %}
         {% block content %}
         {% endblock %}

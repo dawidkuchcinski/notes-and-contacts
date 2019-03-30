@@ -18,6 +18,7 @@ class Note(models.Model):
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     add_time = models.DateTimeField(auto_now_add=True, null=True)
     modify_time = models.DateTimeField(auto_now=True, null=True)
+    user = models.CharField(max_length=50, default='bugs')
 
     def __str__(self):
         return self.title

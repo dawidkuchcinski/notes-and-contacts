@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Kontakty{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+        <a class="nav-link active rounded-top pb-3 mt-2" href="{% url 'kontakty' %}"><i class="fas fa-address-book"></i> Kontakty</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link mt-2 pb-3" href="{% url 'notatki' %}"><i class="fas fa-quote-left"></i> Notatki</a>
+      </li>
+    </ul>
+  </nav>
+  <main class="container-fluid">
+    <div class="row h-100">
+        <div class="col-lg-9 p-4">
+            {% if contact %}
+                <table class="table rounded table-light table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nazwisko</th>
+                            <th scope="col">Imię</th>
+                            <th scope="col">Nr. Telefonu</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Placówka</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ctcts in contact %}
+                            <tr>
+                                <td>{{ ctcts.last_name }}</td><td>{{ ctcts.first_name }}</td><td>{{ ctcts.phone_number }}</td><td>{{ ctcts.email_address }}</td><td>{{ ctcts.branch }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                Brak kontaktów do wyświetlenia
+            {% endif %}
+        </div>
+        <div class="col-lg-3 bg-light">
+            <form method="POST" class="form p-3">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" class="btn btn-primary" value="dodaj" />
+            </form>
+        </div>
+    </div>
+{% endblock %}
