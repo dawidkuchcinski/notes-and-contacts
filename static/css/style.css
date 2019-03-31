@@ -14,14 +14,17 @@
 
 .nav-pills .nav-link.active:hover, .nav-pills .show > .nav-link {
     background-color: #a6e2ff;
+    color: #fff !important;
 }
 
 a {
-    color: #fff;
+    color: #fff !important;
+    
 }
 
 a:hover {
-    color: #a6e2ff;
+    color: #a6e2ff !important;
+    text-decoration: none;
 }
 
 .btn-outline-info {
@@ -32,4 +35,14 @@ a:hover {
 .btn-outline-info:hover {
     background-color: #e6a2bf;
     border-color:  #e6a2bf;
+}
+
+.btn-primary {
+    background-color: #e6a2bf;
+    border-color: #e6a2bf;
+}
+
+.btn-primary:hover {
+    background-color: #a37187;
+    border-color: #a37187;
 }

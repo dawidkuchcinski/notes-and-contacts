@@ -11,6 +11,14 @@
         <a class="nav-link active rounded-top mt-2 pb-3" href="{% url 'notatki' %}"><i class="fas fa-quote-left"></i> Notatki</a>
       </li>
     </ul>
+    <span class="navbar-text pb-0 mb-0">
+        <span class="text-white bg-light text-dark rounded-top font-weight-bold mt-2 pb-3"  style="padding: .5rem 1rem;">
+            {{ user.username }}
+        </span>
+        <a href="{% url 'logout' %}" style="padding: .5rem 1rem;">
+            <i class="fas fa-sign-out-alt"></i> Wyloguj
+        </a>
+    </span>
   </nav>
   <main class="container-fluid">
     <div class="row h-100">
@@ -44,7 +52,7 @@
             <form method="POST" class="form p-3">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <input type="submit" class="btn btn-primary" value="dodaj" />
+                <button type="submit" class="btn btn-outline-info"><i class='fas fa-plus'></i> Dodaj</button>
             </form>
         </div>
     </div>
