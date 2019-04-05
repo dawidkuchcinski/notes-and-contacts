@@ -5,7 +5,7 @@ from .forms import AddNote
 # Create your views here.
 
 def notesindex(request):
-    note_lst = Note.objects.order_by('-modify_time').select_related('contacts').filter(user=str(request.user))
+    note_lst = Note.objects.select_related('contacts').filter(user=str(request.user)).order_by('status', '-modify_time')
     note_dckt = {'note':note_lst}
 
     form = AddNote()

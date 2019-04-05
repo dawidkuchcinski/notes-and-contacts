@@ -30,7 +30,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ nte.title }}</h5>
                                 <h6 class="card-subtitle mb-2 text-muted">{{ nte.modify_time }}</h6>
-                                <p class="card-text">{{ nte.note_content }}</p>
+                                <p class="card-text">{{ nte.note_content|linebreaks }}</p>
                                 <p class="card-text"><small class="text-muted">{{ nte.tag }}</small><small class=""> {{ nte.status }}</small></p>
                                 <div class="text-right">
                                     <button class="btn btn-outline-info" alt="Poprzedni status"><i class="fas fa-angle-left"></i></button>
@@ -48,7 +48,7 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-lg-3 bg-light">
+        <div class="col-lg-3 bg-light h-100 right-0 position-fixed">
             <form method="POST" class="form p-3">
                 {% csrf_token %}
                 {{ form|crispy }}

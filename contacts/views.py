@@ -5,7 +5,7 @@ from .forms import AddContact
 # Create your views here.
 
 def contactindex(request):
-    contact_lst = Contact.objects.order_by('last_name').order_by('first_name')
+    contact_lst = Contact.objects.order_by('last_name', 'first_name')
     contact_dckt = {'contact':contact_lst}
 
     form = AddContact()
