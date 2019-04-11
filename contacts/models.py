@@ -9,6 +9,9 @@ class Branch(models.Model):
     branch_city = models.CharField(max_length=50)
     branch_street = models.CharField(max_length=50)
 
+    class Meta:
+        ordering = ['branch_shortcut']
+
     def __str__(self):
         return self.branch_shortcut
     
@@ -21,6 +24,9 @@ class Contact(models.Model):
     company_name = models.CharField(max_length=50)
     branch = models.ForeignKey(Branch, on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['last_name']
+
     def __str__(self):
-        return self.first_name + " " + self.last_name + " Nr: " + self.phone_number
+        return self.last_name + " " + self.first_name + " Nr: " + self.phone_number
     

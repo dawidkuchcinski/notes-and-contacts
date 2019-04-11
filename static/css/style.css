@@ -50,3 +50,51 @@ a:hover {
 .right-0 {
     right: 0;
 }
+
+.bottom-0 {
+    bottom: 0;
+}
+
+.right-60 {
+    right: 60rem;
+}
+
+.right-50 {
+    right: 50rem;
+}
+
+.bottom-40 {
+    bottom: 40vh;
+}
+
+.right-40 {
+    right: 40rem;
+}
+
+.bottom-30 {
+    bottom: 30vh;
+}
+
+.right-30 {
+    right: 30rem;
+}
+
+.bottom-20 {
+    bottom: 20vh;
+}
+
+.right-20 {
+    right: 20rem;
+}
+
+.bottom-10 {
+    bottom: 10vh;
+}
+
+.right-10 {
+    right: 10rem;
+}
+
+.h-100vh {
+    height: 100vh;
+}
