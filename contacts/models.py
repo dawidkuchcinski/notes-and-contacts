@@ -8,6 +8,7 @@ class Branch(models.Model):
     branch_email_address = models.EmailField(max_length=254)
     branch_city = models.CharField(max_length=50)
     branch_street = models.CharField(max_length=50)
+    branch_safo_number = models.IntegerField(null=True)
 
     class Meta:
         ordering = ['branch_shortcut']

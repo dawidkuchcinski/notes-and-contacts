@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block title %}Kontakty{% endblock %}
+
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block content %}
+                <a class="nav-link pb-3 mt-2" href="{% url 'kontakty' %}"><i class="fas fa-address-book"></i> Kontakty</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-2 pb-3" href="{% url 'notatki' %}"><i class="fas fa-quote-left"></i> Notatki</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active rounded-top mt-2 pb-3" href="{% url 'placowki' %}"><i class="fas fa-warehouse"></i> Placówki</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-2 pb-3" href="{% url 'zamowienia' %}"><i class="fas fa-folder-open"></i> Zamówienia</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <span class="text-white bg-light text-dark rounded-top font-weight-bold pb-4 pt-2"  style="padding: .5rem 1rem;">
+                <i class="fas fa-user-alt"></i> {{ user.username }}
+            </span>
+            <a href="{% url 'logout' %}" style="padding: .5rem 1rem;">
+                <i class="fas fa-sign-out-alt"></i> Wyloguj
+            </a>
+        </span>
+    </div>
+  </nav>
+  <main class="container-fluid">
+    <div class="row h-100">
+        <div class="col-lg-9 p-4">
+            {% if branch %}
+                <table class="table rounded table-light table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Miasto</th>
+                            <th scope="col">Skrót placówki</th>
+                            <th scope="col">Nr. Telefonu</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Ulica</th>
+                            <th scope="col">Nr w safo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for brnchs in branch %}
+                            <tr>
+                                <td>{{ brnchs.branch_city }}</td><td>{{ brnchs.branch_shortcut }}</td><td>{{ brnchs.branch_phone_number }}</td><td>{{ brnchs.branch_email_address }}</td><td>{{ brnchs.branch_street }}</td><td>{{ brnchs.branch_safo_number }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                Brak placówek do wyświetlenia
+            {% endif %}
+        </div>
+        <div class="col-lg-3 bg-light h-100 right-0 position-fixed">
+            <form method="POST" class="form p-3">
+                {% csrf_token %}
+                {{ BForm|crispy }}
+                <button type="submit" class="btn btn-outline-info"><i class="fas fa-user-plus"></i> Dodaj</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

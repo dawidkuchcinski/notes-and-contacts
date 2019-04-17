@@ -6,21 +6,27 @@
 {% load staticfiles %}
 
 {% block content %}
-        <a class="nav-link active rounded-top pb-3 mt-2" href="{% url 'kontakty' %}"><i class="fas fa-address-book"></i> Kontakty</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link mt-2 pb-3" href="{% url 'notatki' %}"><i class="fas fa-quote-left"></i> Notatki</a>
-      </li>
-    </ul>
-    <img src="{% static 'favicon/android-icon-48x48.png' %}" alt="App Logo" class="img-fluid pb-2" />
-    <span class="navbar-text pb-0 mb-0">
-        <span class="text-white bg-light text-dark rounded-top font-weight-bold mt-2 pb-3"  style="padding: .5rem 1rem;">
-            <i class="fas fa-user-alt"></i> {{ user.username }}
+                <a class="nav-link active rounded-top pb-3 mt-2" href="{% url 'kontakty' %}"><i class="fas fa-address-book"></i> Kontakty</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-2 pb-3" href="{% url 'notatki' %}"><i class="fas fa-quote-left"></i> Notatki</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-2 pb-3" href="{% url 'placowki' %}"><i class="fas fa-warehouse"></i> Placówki</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-2 pb-3" href="{% url 'zamowienia' %}"><i class="fas fa-folder-open"></i> Zamówienia</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <span class="text-white bg-light text-dark rounded-top font-weight-bold  pb-4 pt-2"  style="padding: .5rem 1rem;">
+                <i class="fas fa-user-alt"></i> {{ user.username }}
+            </span>
+            <a href="{% url 'logout' %}" style="padding: .5rem 1rem;">
+                <i class="fas fa-sign-out-alt"></i> Wyloguj
+            </a>
         </span>
-        <a href="{% url 'logout' %}" style="padding: .5rem 1rem;">
-            <i class="fas fa-sign-out-alt"></i> Wyloguj
-        </a>
-    </span>
+    </div>
   </nav>
   <main class="container-fluid">
     <div class="row h-100">

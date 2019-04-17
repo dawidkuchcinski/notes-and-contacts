@@ -30,15 +30,22 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body class="bg-color">
-  <nav class="navbar sticky-top navbar-light bg-nav pb-0 pl-5">
-    <ul class="nav nav-pills">
-      <li class="nav-item">
-    {% if user.is_authenticated %}
-        {% block content %}
-        {% endblock %}
-    {% else %}
-        <meta http-equiv="REFRESH" content="0;url='{% url 'login' %}'">
-    {% endif %}
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light text-center bg-nav pb-0 pl-5">
+    <a class="navbar-brand pt-0" href="#">
+      <img src="{% static 'favicon/android-icon-36x36.png' %}" alt="App Logo" class="img-fluid" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+      {% if user.is_authenticated %}
+          {% block content %}
+          {% endblock %}
+      {% else %}
+          <meta http-equiv="REFRESH" content="0;url='{% url 'login' %}'">
+      {% endif %}
   </main>
 </body>
 </html>
