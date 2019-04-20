@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'orders',
     'branchs',
     'accounts',
-    'phonenumber_field',
     'bootstrap4',
     'crispy_forms',
 ]
