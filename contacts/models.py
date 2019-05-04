@@ -13,7 +13,7 @@ class Branch(models.Model):
         ordering = ['branch_shortcut']
 
     def __str__(self):
-        return self.branch_shortcut
+        return self.branch_city
     
 
 class Contact(models.Model):

@@ -25,4 +25,5 @@ urlpatterns = [
     path('notatki/', include('notes.urls')),
     path('placowki/', include('branchs.urls')),
     path('zamowienia/', include('orders.urls')),
+    path('nadgodziny/', include('overtime.urls')),
 ]

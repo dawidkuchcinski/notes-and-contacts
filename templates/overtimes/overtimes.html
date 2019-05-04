@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block title %}Nadgodziny{% endblock %}
+
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% block content %}
+                <a class="nav-link pb-3 mt-2" href="{% url 'kontakty' %}"><i class="fas fa-address-book"></i> Kontakty</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-2 pb-3" href="{% url 'notatki' %}"><i class="fas fa-quote-left"></i> Notatki</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-2 pb-3" href="{% url 'placowki' %}"><i class="fas fa-warehouse"></i> Placówki</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link mt-2 pb-3" href="{% url 'zamowienia' %}"><i class="fas fa-folder-open"></i> Zamówienia</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active rounded-top mt-2 pb-3" href="{% url 'nadgodziny' %}"><i class="fas fa-calendar-alt"></i> Nadgodziny</a>
+            </li>
+        </ul>
+        <span class="navbar-text">
+            <span class="text-white bg-light text-dark rounded-top font-weight-bold  pb-4 pt-2"  style="padding: .5rem 1rem;">
+                <i class="fas fa-user-alt"></i> {{ user.username }}
+            </span>
+            <a href="{% url 'logout' %}" style="padding: .5rem 1rem;">
+                <i class="fas fa-sign-out-alt"></i> Wyloguj
+            </a>
+        </span>
+    </div>
+  </nav>
+  <main class="container-fluid">
+    <div class="row h-100">
+        <div class="col-lg-9 p-4">
+            {% if overtime %}
+                <form class="form bg-light card p-3" method="get">
+                    {{ filter.form|crispy }}
+                    <button type="submit" class="btn btn-outline-info"><i class="fas fa-search"></i> Wyszukaj</button>
+                </form>   
+                <table class="table rounded table-light table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Typ nadgodziny</th>
+                            <th scope="col">Placówka</th>
+                            <th scope="col">Data rozpoczęcie</th>
+                            <th scope="col">Data zakończenia</th>
+                            <th scope="col">Ilość godzin</th>
+                            <th scope="col">Zarobek</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <script>
+                            var hours_sum=0;
+                            var moneys_sum=0;
+                        </script>
+                        {% for ovrtme in filter.qs %}
+                            <tr>
+                                <td>{{ ovrtme.overtime_type.overtime_type_name }}</td><td>{{ ovrtme.overtime_branch }}</td><td>{{ ovrtme.overtime_date_begin }}</td><td>{{ ovrtme.overtime_date_end }}</td>
+                                <td>
+                                    <script>
+                                        var begin_hour= new Date("{{ ovrtme.overtime_date_begin.isoformat }}");
+                                        var end_hour= new Date("{{ ovrtme.overtime_date_end.isoformat }}");
+                                        var hours = Math.abs(begin_hour - end_hour) / 36e5;
+                                        hours = Math.round(hours);
+                                        hours_sum+=hours;
+                                        document.write(hours);
+                                    </script>
+                                </td>
+                                <td>
+                                    <script>
+                                        var hour_cost = "{{ ovrtme.overtime_type.overtime_hour_cost }}";
+                                        hour_cost*=1;
+                                        var moneys = hour_cost * hours;
+                                        moneys_sum+=moneys
+                                        document.write(moneys);
+                                    </script>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                            <tr class="font-weight-bold">
+                                <td colspan="3"></td>
+                                <td class="">Razem:</td>
+                                <td><script>document.write(hours_sum)</script></td>
+                                <td><script>document.write(moneys_sum)</script></td>
+                            </tr>
+                    </tbody>
+                </table>
+            {% else %}
+                Brak nadgodzin do wyświetlenia
+            {% endif %}
+        </div>
+        <div class="col-lg-3 bg-light h-100 right-0 position-fixed">
+            <form method="POST" class="form p-3">
+                {% csrf_token %}
+                <button class="float-right btn btn-outline-info pt-1 pb-1" alt="Dodaj typ nadgodziny" data-toggle="modal" data-target="#OTForm"><i class="fas fa-plus"></i></button>
+                {{ form.overtime_type|as_crispy_field }}
+                <button class="float-right btn btn-outline-info pt-1 pb-1" alt="Dodaj placówkę" data-toggle="modal" data-target="#BForm"><i class="fas fa-plus"></i></button>
+                {{ form.overtime_branch|as_crispy_field }}
+                {{ form.overtime_date_begin|as_crispy_field }}
+                {{ form.overtime_date_end|as_crispy_field }}
+                <button type="submit" class="btn btn-outline-info"><i class="fas fa-user-plus"></i> Dodaj</button>
+            </form>
+        </div>
+
+        <div class="modal fade" id="BForm" tabindex="-1" role="dialog" aria-labelledby="BFormLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Dodaj placówkę</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <form method="POST" calss="form">
+                                {% csrf_token %}
+                                {{ BForm|crispy }}
+                                <button type="submit" class="btn btn-outline-info"><i class="fas fa-plus"></i> Dodaj</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="OTForm" tabindex="-1" role="dialog" aria-labelledby="OTFormLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Dodaj placówkę</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="">
+                            <form method="POST" calss="form">
+                                {% csrf_token %}
+                                {{ OTForm|crispy }}
+                                <button type="submit" class="btn btn-outline-info"><i class="fas fa-plus"></i> Dodaj</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -43,9 +43,11 @@ INSTALLED_APPS = [
     'contacts',
     'orders',
     'branchs',
+    'overtime',
     'accounts',
     'bootstrap4',
     'crispy_forms',
+    'django_filters',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -124,6 +126,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATETIME_FROMAT = '%Y-%m-%d %H:%M:%S'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

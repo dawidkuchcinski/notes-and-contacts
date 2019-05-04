@@ -28,6 +28,25 @@
   <meta name="msapplication-TileImage" content="{% static 'favicon/ms-icon-144x144.png' %}">
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+  <script>
+  $( function() {
+    $( "#id_overtime_date_begin" ).datetimepicker({
+        format:'Y-m-d H:i:s',
+    });
+    $( "#id_overtime_date_end" ).datetimepicker({
+        format:'Y-m-d H:i:s',
+    });
+    $( "#id_overtime_date_begin__gt" ).datetimepicker({
+        format:'Y-m-d',
+    });
+    $( "#id_overtime_date_end__lt" ).datetimepicker({
+        format:'Y-m-d',
+    });
+  } );
+  </script>
 </head>
 <body class="bg-color">
   <nav class="navbar sticky-top navbar-expand-lg navbar-light text-center bg-nav pb-0 pl-5">

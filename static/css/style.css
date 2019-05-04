@@ -38,6 +38,7 @@ a:hover {
 .btn-outline-info {
     color:  #a6e2ff;
     border-color:  #a6e2ff;
+    background-color: #fff;
 }
 
 .btn-outline-info:hover {
@@ -105,4 +106,9 @@ a:hover {
 
 .h-100vh {
     height: 100vh;
+}
+
+.login-box {
+    padding-top: 120px !important;
+    max-width: 600px;
 }
