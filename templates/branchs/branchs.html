@@ -23,7 +23,7 @@
         </ul>
         <span class="navbar-text">
             <span class="text-white bg-light text-dark rounded-top font-weight-bold pb-4 pt-2"  style="padding: .5rem 1rem;">
-                <i class="fas fa-user-alt"></i> {{ user.username }}
+                <a class="text-dark" href="{% url 'admin:index' %}"><i class="fas fa-user-alt"></i> {{ user.username }}</a>
             </span>
             <a href="{% url 'logout' %}" style="padding: .5rem 1rem;">
                 <i class="fas fa-sign-out-alt"></i> Wyloguj
@@ -44,12 +44,13 @@
                             <th scope="col">Email</th>
                             <th scope="col">Ulica</th>
                             <th scope="col">Nr w safo</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for brnchs in branch %}
                             <tr>
-                                <td>{{ brnchs.branch_city }}</td><td>{{ brnchs.branch_shortcut }}</td><td>{{ brnchs.branch_phone_number }}</td><td>{{ brnchs.branch_email_address }}</td><td>{{ brnchs.branch_street }}</td><td>{{ brnchs.branch_safo_number }}</td>
+                                <td>{{ brnchs.branch_city }}</td><td>{{ brnchs.branch_shortcut }}</td><td>{{ brnchs.branch_phone_number }}</td><td>{{ brnchs.branch_email_address }}</td><td>{{ brnchs.branch_street }}</td><td>{{ brnchs.branch_safo_number }}</td><td><button onclick="window.location.href='ssh://10.{{ brnchs.branch_svp_id }}.1.1'" class="btn btn-outline-info"><i class="fas fa-terminal"></i></button></td>
                             </tr>
                         {% endfor %}
                     </tbody>
