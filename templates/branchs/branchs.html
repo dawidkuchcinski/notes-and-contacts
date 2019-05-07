@@ -50,7 +50,11 @@
                     <tbody>
                         {% for brnchs in branch %}
                             <tr>
-                                <td>{{ brnchs.branch_city }}</td><td>{{ brnchs.branch_shortcut }}</td><td>{{ brnchs.branch_phone_number }}</td><td>{{ brnchs.branch_email_address }}</td><td>{{ brnchs.branch_street }}</td><td>{{ brnchs.branch_safo_number }}</td><td><button onclick="window.location.href='ssh://10.{{ brnchs.branch_svp_id }}.1.1'" class="btn btn-outline-info"><i class="fas fa-terminal"></i></button></td>
+                                <td>{{ brnchs.branch_city }}</td><td>{{ brnchs.branch_shortcut }}</td><td>{{ brnchs.branch_phone_number }}</td><td>{{ brnchs.branch_email_address }}</td><td>{{ brnchs.branch_street }}</td><td>{{ brnchs.branch_safo_number }}</td><td><button onclick="window.location.href='ssh://10.{{ brnchs.branch_svp_id }}.1.1'" class="btn btn-outline-info"
+                                {% if brnchs.branch_svp_id == None %} 
+                                        disabled
+                                {% endif %}
+                                ><i class="fas fa-terminal"></i></button></td>
                             </tr>
                         {% endfor %}
                     </tbody>

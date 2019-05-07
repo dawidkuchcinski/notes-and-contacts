@@ -41,7 +41,13 @@ a:hover {
     background-color: #fff;
 }
 
-.btn-outline-info:hover {
+.btn-outline-info:disabled {
+    color: #ddd;
+    border-color: #ddd;
+    background-color: #fff;
+}
+
+.btn-outline-info:hover:enabled {
     background-color: #e6a2bf;
     border-color:  #e6a2bf;
 }
