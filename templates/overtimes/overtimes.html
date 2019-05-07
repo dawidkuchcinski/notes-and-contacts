@@ -22,8 +22,8 @@
             </li>
         </ul>
         <span class="navbar-text">
-            <span class="text-white bg-light text-dark rounded-top font-weight-bold  pb-4 pt-2"  style="padding: .5rem 1rem;">
-                <i class="fas fa-user-alt"></i> {{ user.username }}
+            <span class="text-white bg-light text-dark rounded-top font-weight-bold pb-4 pt-2"  style="padding: .5rem 1rem;">
+                <a class="text-dark" href="{% url 'admin:index' %}"><i class="fas fa-user-alt"></i> {{ user.username }}</a>
             </span>
             <a href="{% url 'logout' %}" style="padding: .5rem 1rem;">
                 <i class="fas fa-sign-out-alt"></i> Wyloguj
